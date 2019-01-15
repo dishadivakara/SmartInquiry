@@ -1,0 +1,17 @@
+{
+  "name": "smartinquiry",
+  "version": "1.0.0",
+  "description": "Inquiry using Alexa",
+  "main": "app.js",
+  "dependencies": {
+    "express": "*",
+    "body-parser": "*",
+    "mongoose": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chaos",
+  "license": "ISC"
+}
