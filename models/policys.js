@@ -2,15 +2,20 @@ var mongoose= require('mongoose');
 
 //policy details schema
 var policySchema =  mongoose.Schema({
-	userId:{
+	policyId:{
 		type:String,
 		required: true
 	},
+	customerId:{
+		type:String,
+		required: true
+	}
+	,
 	policyName:{
 		type: String,
 		required: true
 	},
-	policyAmount:{
+	policyDueDate:{
 		type: String,
 		required: true
 	},
@@ -22,15 +27,19 @@ var policySchema =  mongoose.Schema({
 
 });
 
-var Policy = module.exports = mongoose.model('Policy', policySchema, 'PolicyDetails');
+var Policy = module.exports = mongoose.model('Policy', policySchema, 'Policys');
 
 //Get policies
-module.exports.getPolicyDetails = function(callback, limit){
+module.exports.getPolicies = function(callback, limit){
 	Policy.find(callback).limit(limit);
 }
 
 //Get policy by UserId
 //Get policies
 module.exports.getPolicyByUserId = function( query,callback){
+	Policy.findOne(query, callback);
+}
+
+module.exports.getPolicyByPolicyId = function( query,callback){
 	Policy.findOne(query, callback);
 }
