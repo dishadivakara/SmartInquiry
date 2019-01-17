@@ -27,7 +27,7 @@ var policySchema =  mongoose.Schema({
 
 });
 
-var Policy = module.exports = mongoose.model('Policy', policySchema, 'Policys');
+var Policy = module.exports = mongoose.model('Policy', policySchema, 'Policy');
 
 //Get policies
 module.exports.getPolicies = function(callback, limit){
@@ -41,5 +41,9 @@ module.exports.getPolicyByUserId = function( query,callback){
 }
 
 module.exports.getPolicyByPolicyId = function( query,callback){
+	Policy.findOne(query, callback);
+}
+
+module.exports.getPolicyByCategory = function( query,callback){
 	Policy.findOne(query, callback);
 }

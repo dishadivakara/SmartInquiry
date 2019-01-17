@@ -6,16 +6,20 @@ var userSchema =  mongoose.Schema({
 		type:String,
 		required: true
 	},
-	lanId:{
+	userId:{
 		type: String,
 		required: true
 	}
 
 });
 
-var User = module.exports = mongoose.model('Users', userSchema, 'Users');
+var User = module.exports = mongoose.model('User', userSchema, 'User');
 
 //Get users
 module.exports.getUsers = function(callback, limit){
 	User.find(callback).limit(limit);
+}
+
+module.exports.getUserByUserId = function( query,callback){
+	User.findOne(query, callback);
 }
