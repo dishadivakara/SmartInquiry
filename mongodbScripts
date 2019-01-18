@@ -55,17 +55,3 @@ db.Policy.insert({
   policyStatus: 'Inactive'
 }) ;
 
-[
-  {
-    "_id": "5c417071bce89c8708c4f70a",
-    "policyNum": "NMPO0003",
-    "policyOwner": "Tony",
-    "userId": "TONY123",
-    "policyCategory": "Short term care",
-    "policyAmount": "250000",
-    "policyPremium": "730",
-    "policyCreatedDate": "08-02-2015",
-    "policypremiumDueDate": "02-12-2019",
-    "policyStatus": "Active"
-  }
-]
