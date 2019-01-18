@@ -7,6 +7,7 @@ const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
 
 app.use(cors());
+app.use(bodyParser.json());
 
 Policy = require('./models/policys.js')
 User = require('./models/users.js');
@@ -49,13 +50,13 @@ app.post('/api/policies', function(req, res){
 	var searchCategory = req.body.category;
 	var query ;
 	if(searchUser && searchCategory ){
-		query = { userId: searchUser,  category: searchCategory  }; 
+		query = { userId: searchUser,  policyCategory: searchCategory  }; 
 		console.log(query);
 	}else if(searchUser){
 		query = { userId: searchUser }; 
 		console.log(query);
 	}else if(searchCategory){
-		query = { category: searchCategory  }; 
+		query = { policyCategory: searchCategory  }; 
 		console.log(query);
 	 }
 	else{
