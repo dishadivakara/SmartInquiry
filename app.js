@@ -43,11 +43,11 @@ app.get('/api/policies', function(req, res){
 		res.json(policies);
 	});
 });
-
+//post request to filter policies
 app.post('/api/policies', function(req, res){
 	var searchUser = req.body.userId;
 	var searchCategory = req.body.category;
-	var query = '';
+	var query ;
 	if(searchUser && searchCategory ){
 		query = { userId: searchUser,  category: searchCategory  }; 
 		console.log(query);
@@ -57,19 +57,24 @@ app.post('/api/policies', function(req, res){
 	}else if(searchCategory){
 		query = { category: searchCategory  }; 
 		console.log(query);
-	 }	 
-		
-	User.getUserByUserId(query, function(err, user){
+	 }
+	else{
+		console.log('Cannot find any policies');
+	}
+	
+	if(query){
+		Policy.getPolicyByCategory(query, function(err, policy){
 		if(err ){
 			throw err;
 		}
-		else if(user){
-			res.json(user);
+		else if(policy){
+			res.json(policy);
 		}
 		else{
 			console.log('Some problem occured');
 		}
 	});
+	}
 });
 app.get('/api/policies/user/:userId', function(req, res){
 	var query = { userId : req.params.userId };
