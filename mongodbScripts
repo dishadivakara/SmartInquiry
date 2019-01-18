@@ -1,0 +1,56 @@
+db smartInquiry
+db.createCollection('User');
+db.createCollection('Policy');
+
+db.User.insert({
+  name : 'Tony'    ,
+  userId : 'TONY123'
+})
+
+db.Policy.insert({
+  policyNum : 'NMPO0001',
+  policyOwner : 'Tony',
+  userId : 'TONY123',
+  policyCategory : 'Long term care',
+  policyAmount: '100000',
+  policyPremium: '1000',
+  policyCreatedDate: '01-01-2018',
+  policypremiumDueDate : '02-06-2019',
+  policyStatus: 'Active'
+}) ;
+
+db.Policy.insert({
+  policyNum : 'NMPO0002',
+  policyOwner : 'Tony',
+  userId : 'TONY123',
+  policyCategory : 'Annuity',
+  policyAmount: '500000',
+  policyPremium: '500',
+  policyCreatedDate: '01-01-2010',
+  policypremiumDueDate : '02-06-2019',
+  policyStatus: 'Active'
+}) ;
+
+db.Policy.insert({
+  policyNum : 'NMPO0003',
+  policyOwner : 'Tony'  ,
+  userId : 'TONY123',
+  policyCategory : 'Short term care',
+  policyAmount: '250000',
+  policyPremium: '730',
+  policyCreatedDate: '08-02-2015',
+  policypremiumDueDate : '02-12-2019',
+  policyStatus: 'Active'
+}) ;
+
+db.Policy.insert({
+  policyNum : 'NMPO0004',
+  policyOwner : 'Tony',
+  userId : 'TONY123',
+  policyCategory : 'Annuity',
+  policyAmount: '63000',
+  policyPremium: '680',
+  policyCreatedDate: '03-20-2008',
+  policypremiumDueDate : '02-01-2019',
+  policyStatus: 'Inactive'
+}) ;
