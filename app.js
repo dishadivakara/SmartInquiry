@@ -44,6 +44,33 @@ app.get('/api/policies', function(req, res){
 	});
 });
 
+app.post('/api/policies', function(req, res){
+	var searchUser = req.body.userId;
+	var searchCategory = req.body.category;
+	var query = '';
+	if(searchUser && searchCategory ){
+		query = { userId: searchUser,  category: searchCategory  }; 
+		console.log(query);
+	}else if(searchUser){
+		query = { userId: searchUser }; 
+		console.log(query);
+	}else if(searchCategory){
+		query = { category: searchCategory  }; 
+		console.log(query);
+	 }	 
+		
+	User.getUserByUserId(query, function(err, user){
+		if(err ){
+			throw err;
+		}
+		else if(user){
+			res.json(user);
+		}
+		else{
+			console.log('Some problem occured');
+		}
+	});
+});
 app.get('/api/policies/user/:userId', function(req, res){
 	var query = { userId : req.params.userId };
 	console.log(query);
