@@ -2,24 +2,44 @@ var mongoose= require('mongoose');
 
 //policy details schema
 var policySchema =  mongoose.Schema({
-	policyId:{
+	policyNum:{
 		type:String,
 		required: true
 	},
-	customerId:{
+	userId:{
 		type:String,
 		required: true
 	}
 	,
-	policyName:{
+	policyOwner:{
 		type: String,
 		required: true
 	},
-	policyDueDate:{
+	policyCategory:{
 		type: String,
 		required: true
+	},
+	policyAmount:{
+		type: String,
+		required: true
+
 	},
 	policyPremium:{
+		type: String,
+		required: true
+
+	},
+	policyCreatedDate:{
+		type: String,
+		required: true
+
+	},
+	policypremiumDueDate:{
+		type: String,
+		required: true
+
+	},
+	policyStatus:{
 		type: String,
 		required: true
 
