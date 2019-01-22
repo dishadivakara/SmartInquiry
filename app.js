@@ -17,7 +17,7 @@ User = require('./models/users.js');
 mongoose.connect('mongodb://localhost/smartInquiry');
 var db= mongoose.connection;
 
-/*const checkJwt = jwt({
+const checkJwt = jwt({
   secret: jwksRsa.expressJwtSecret({
     cache: true,
     rateLimit: true,
@@ -27,16 +27,15 @@ var db= mongoose.connection;
   aud: 'http://localhost:8080/',
   issuer: 'https://disharmony.auth0.com/',
   algorithms: [ 'RS256' ],
-});*/
-
-//app.use(checkJwt);
+});
 
 
-app.get('/', function(req,res){
+
+app.get('/',checkJwt, function(req,res){
 	res.send('Hello World again!');
 });
 
-app.get('/api/policies', function(req, res){
+app.get('/api/policies', checkJwt, function(req, res){
 	Policy.getPolicies(function(err, policies){
 		if(err){
 			throw err;
@@ -45,7 +44,7 @@ app.get('/api/policies', function(req, res){
 	});
 });
 //post request to filter policies
-app.post('/api/policies', function(req, res){
+app.post('/api/policies',checkJwt, function(req, res){
 	var searchUser = req.body.userId;
 	var searchCategory = req.body.category;
 	var query ;
@@ -77,7 +76,7 @@ app.post('/api/policies', function(req, res){
 	});
 	}
 });
-app.get('/api/policies/user/:userId', function(req, res){
+app.get('/api/policies/user/:userId', checkJwt,function(req, res){
 	var query = { userId : req.params.userId };
 	console.log(query);
 	User.getUserByUserId(query, function(err, user){
@@ -93,7 +92,7 @@ app.get('/api/policies/user/:userId', function(req, res){
 	});
 });
 
-app.get('/api/policies/user/:userId/policy/:policyId', function(req, res){
+app.get('/api/policies/user/:userId/policy/:policyId',checkJwt, function(req, res){
 	var query = { userId : req.params.userId , policyNum : req.params.policyId };
 	console.log(query);
 	Policy.getPolicyByPolicyId(query, function(err, policy){
@@ -109,7 +108,7 @@ app.get('/api/policies/user/:userId/policy/:policyId', function(req, res){
 	});
 });
 
-app.get('/api/policies/user/:userId/category/:category', function(req, res){
+app.get('/api/policies/user/:userId/category/:category',checkJwt, function(req, res){
 	
 	var query = { userId : req.params.userId , policyCategory: req.params.category };
 	console.log(query);
@@ -125,7 +124,7 @@ app.get('/api/policies/user/:userId/category/:category', function(req, res){
 		}
 	});
 });
-app.get('/api/users', function(req, res){
+app.get('/api/users',checkJwt, function(req, res){
 	User.getUsers(function(err, users){
 		if(err){
 			throw err;
